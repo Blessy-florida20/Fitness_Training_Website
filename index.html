@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitLife Training Center - Get Fit, Stay Strong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg:            #0d2230;
+    --bg-panel:      #122c3d;
+    --bg-panel-2:    #163449;
+    --line:          #2c4a5e;
+    --text:          #f2f3f0;
+    --text-dim:      #a9bcc7;
+    --accent:        #f2b705;   /* gold - energy / effort            */
+    --accent-2:      #5fd4c1;   /* teal-mint - progress / go          */
+    --radius:        4px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Work Sans', Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3{
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0 0 0.4em 0;
+  }
+
+  h1{ font-size: clamp(2.4rem, 5.6vw, 4.2rem); line-height: 1.08; }
+  h2{ font-size: clamp(1.7rem, 3vw, 2.4rem); }
+  h3{ font-size: 1.2rem; letter-spacing: 0.04em; color: var(--accent); }
+
+  a{ color: var(--accent-2); }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .eyebrow{
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(23,22,20,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .brand{
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+  .brand span{ color: var(--accent); }
+  .nav-links{
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a{
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover{ color: var(--accent-2); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 72px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero p.lead{
+    color: var(--text-dim);
+    font-size: 1.08rem;
+    max-width: 46ch;
+    margin-bottom: 28px;
+  }
+  .hero-figure{
+    position: relative;
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%);
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .hero-figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .btn{
+    display: inline-block;
+    background: var(--accent);
+    color: #171310;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    border: none;
+    cursor: pointer;
+  }
+  .btn.ghost{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+    margin-left: 12px;
+  }
+
+  /* ---------- SECTION SPACING ---------- */
+  section{ padding: 64px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom: none; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .about-grid img{
+    width: 100%;
+    border-radius: var(--radius);
+    display: block;
+  }
+  .about-grid p{ color: var(--text-dim); }
+
+  /* ---------- PROGRAM CARDS ---------- */
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body{ padding: 20px 22px 26px; }
+  .card-body p{ color: var(--text-dim); font-size: 0.95rem; margin: 0; }
+
+  /* ---------- LISTS SIDE BY SIDE ---------- */
+  .list-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 16px;
+  }
+  .list-grid ul, .list-grid ol{ margin: 0; padding-left: 22px; color: var(--text-dim); }
+  .list-grid li{ margin-bottom: 6px; }
+  .list-grid ul ul, .list-grid ol ol{ margin-top: 6px; }
+
+  /* ---------- TABLE ---------- */
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    background: var(--bg-panel);
+  }
+  th, td{
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  th{
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-2);
+  }
+  tr:last-child td{ border-bottom: none; }
+
+  /* ---------- FORM ---------- */
+  form{
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 8px 32px 32px;
+    margin-top: 24px;
+  }
+  fieldset{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 24px 26px;
+    margin: 24px 0;
+  }
+  legend{
+    padding: 0 10px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+  form label{ color: var(--text-dim); font-size: 0.95rem; }
+  .field-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  .field{ display: flex; flex-direction: column; gap: 6px; }
+  .field label{ font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"],
+  input[type="time"], input[type="number"], input[type="file"], select, textarea{
+    background: #0a1a24;
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  textarea{ resize: vertical; }
+  .radio-row, .checkbox-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 6px;
+  }
+  .radio-row label, .checkbox-row label{ display: flex; align-items: center; gap: 6px; }
+  .form-actions{ margin-top: 20px; display: flex; gap: 12px; }
+  input[type="reset"]{
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+  }
+  input[type="submit"]{
+    background: var(--accent);
+    border: none;
+    color: #171310;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+  }
+
+  /* ---------- TERMS ---------- */
+  dl{ margin-top: 16px; }
+  dt{ color: var(--accent-2); font-weight: 700; margin-top: 14px; }
+  dd{ color: var(--text-dim); margin-left: 0; }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .gallery-grid a{
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+  }
+  .gallery-grid img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .gallery-grid a:hover img{ transform: scale(1.06); }
+
+  /* ---------- CONTACT & FOOTER ---------- */
+  .contact-row{
+    display: flex;
+    gap: 40px;
+    margin-top: 16px;
+    color: var(--text-dim);
+  }
+  footer{
+    text-align: center;
+    padding: 28px 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 800px){
+    .hero{ grid-template-columns: 1fr; padding-top: 40px; }
+    .hero-figure{ order: -1; clip-path: none; aspect-ratio: 16/10; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .card-grid{ grid-template-columns: 1fr; }
+    .list-grid{ grid-template-columns: 1fr; gap: 24px; }
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+    .field-row{ grid-template-columns: 1fr; }
+    .nav-links{ display: none; }
+    .contact-row{ flex-direction: column; gap: 8px; }
+  }
+
+  :focus-visible{ outline: 2px solid var(--accent-2); outline-offset: 2px; }
+
+</style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="wrap">
+      <div class="brand">FIT<span>LIFE</span> TRAINING</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#plans">Plans</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="top">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">Strength &middot; Cardio &middot; Flexibility</span>
+        <h1>GET FIT.<br>STAY STRONG.</h1>
+        <p class="lead">FitLife Training Center has helped everyday people build real strength for over
+          10 years, through personal training, group classes, and nutrition guidance.</p>
+        <a href="#register" class="btn">Join Now</a>
+        <a href="#programs" class="btn ghost">See Programs</a>
+      </div>
+      <div class="hero-figure">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80"
+             alt="Person about to lift a barbell in the gym">
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">About Us</span>
+        <h2>10+ years building stronger people</h2>
+        <p>FitLife Training Center has been helping people achieve their fitness goals for over
+          10 years. We offer personal training, group classes, and nutrition guidance to help
+          you live a healthier life.</p>
+        <p>Our coaches design every program around real progress, not guesswork, so every rep
+          moves you closer to your goal.</p>
+        <p><a href="https://www.who.int/news-room/fact-sheets/detail/physical-activity" target="_blank">
+          Learn about Physical Activity Guidelines (WHO, external site) &rarr;</a></p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80"
+           alt="Trainer coaching a client through a weight lifting session">
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="wrap">
+      <span class="eyebrow">Our Training Programs</span>
+      <h2>Programs built around your goal</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1534368959876-26bf04f2c947?w=500&q=80"
+               alt="Person performing a barbell squat in the gym">
+          <div class="card-body">
+            <h3>Strength Training</h3>
+            <p>Build muscle and increase overall body strength with our expert-guided sessions.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=500&q=80"
+               alt="Person running outdoors during a cardio session">
+          <div class="card-body">
+            <h3>Cardio Fitness</h3>
+            <p>Improve your heart health and stamina through fun and effective cardio workouts.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=80"
+               alt="Person stretching on a yoga mat">
+          <div class="card-body">
+            <h3>Flexibility</h3>
+            <p>Move better and recover faster with guided yoga and stretching sessions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-grid">
+        <div>
+          <h3>Program Categories</h3>
+          <ul>
+            <li>Strength Training
+              <ul>
+                <li>Weight Lifting</li>
+                <li>Resistance Bands</li>
+              </ul>
+            </li>
+            <li>Cardio
+              <ul>
+                <li>Running</li>
+                <li>Cycling</li>
+              </ul>
+            </li>
+            <li>Flexibility
+              <ul>
+                <li>Yoga</li>
+                <li>Stretching</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3>Steps to Join</h3>
+          <ol>
+            <li>Sign up on our website
+              <ol>
+                <li>Fill the registration form</li>
+                <li>Choose your plan</li>
+              </ol>
+            </li>
+            <li>Attend a free trial class</li>
+            <li>Start your fitness journey!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="wrap">
+      <span class="eyebrow">Membership</span>
+      <h2>Plans for every commitment level</h2>
+      <table>
+        <tr>
+          <th>Plan</th>
+          <th>Duration</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>Basic</td>
+          <td>1 Month</td>
+          <td>$20</td>
+        </tr>
+        <tr>
+          <td>Standard</td>
+          <td>3 Months</td>
+          <td>$50</td>
+        </tr>
+        <tr>
+          <td>Premium</td>
+          <td>12 Months</td>
+          <td>$180</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== REGISTRATION FORM ===== -->
+  <section id="register">
+    <div class="wrap">
+      <span class="eyebrow">Sign Up</span>
+      <h2>Fitness Training Registration</h2>
+
+      <form action="/action_page.php" method="get">
+
+        <fieldset>
+          <legend>Personal Details</legend>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Enter first name">
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Enter last name">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" name="dob">
+            </div>
+            <div class="field">
+              <label>Gender</label>
+              <div class="radio-row">
+                <label><input type="radio" name="gender" value="male" id="male"> Male</label>
+                <label><input type="radio" name="gender" value="female" id="female"> Female</label>
+                <label><input type="radio" name="gender" value="other" id="other"> Other</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Membership Details</legend>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="plan">Choose a Plan</label>
+              <select id="plan" name="plan">
+                <option value="basic">Basic - 1 Month ($20)</option>
+                <option value="standard">Standard - 3 Months ($50)</option>
+                <option value="premium">Premium - 12 Months ($180)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="program">Preferred Program</label>
+              <select id="program" name="program">
+                <option value="strength">Strength Training</option>
+                <option value="cardio">Cardio Fitness</option>
+                <option value="flexibility">Flexibility</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="training_time">Preferred Training Time</label>
+              <input type="time" id="training_time" name="training_time">
+            </div>
+            <div class="field">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" name="weight" min="20" max="300">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Interests</label>
+            <div class="checkbox-row">
+              <label><input type="checkbox" name="interest" value="personal_training" id="pt"> Personal Training</label>
+              <label><input type="checkbox" name="interest" value="group_classes" id="gc"> Group Classes</label>
+              <label><input type="checkbox" name="interest" value="nutrition" id="nt"> Nutrition Guidance</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Additional Information</legend>
+
+          <div class="field">
+            <label for="notes">Notes for our trainers (health conditions, etc.)</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Type here..."></textarea>
+          </div>
+          <br>
+          <div class="field">
+            <label for="medical_cert">Upload Medical Certificate (if any)</label>
+            <input type="file" id="medical_cert" name="medical_cert">
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <input type="submit" value="Register Now">
+          <input type="reset" value="Clear Form">
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- ===== END REGISTRATION FORM ===== -->
+
+  <section id="terms">
+    <div class="wrap">
+      <span class="eyebrow">Glossary</span>
+      <h2>Fitness Terms You Should Know</h2>
+      <dl>
+        <dt>Cardio</dt>
+        <dd>Exercise that increases your heart rate, like running or cycling.</dd>
+        <dt>Reps</dt>
+        <dd>Short for "repetitions", the number of times you perform an exercise.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <span class="eyebrow">Our Space</span>
+      <h2>Visit Our Gym Gallery</h2>
+      <div class="gallery-grid">
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="https://images.unsplash.com/photo-1689877020200-403d8542d95d?w=400&q=80"
+               alt="A gym filled with lots of machines and weights - click to visit our gallery">
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80"
+               alt="Rows of dumbbells on a gym rack - click to visit our gallery">
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80"
+               alt="Group fitness class stretching together - click to visit our gallery">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Contact Us</h2>
+      <p>Have questions? Reach out to us anytime!</p>
+      <div class="contact-row">
+        <p>Email: <a href="mailto:info@fitlifetraining.com">info@fitlifetraining.com</a></p>
+        <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 FitLife Training Center. All rights reserved.
+  </footer>
+
+</body>
+</html>
